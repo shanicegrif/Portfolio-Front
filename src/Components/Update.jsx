@@ -99,9 +99,9 @@ const Update = () => {
           placeholder="0.0 to 10.0"
           onChange={handleTextChange}
         />
-        <label htmlFor="isFavorite">Favorite:</label>
+        <label htmlFor="has_emmy">Emmy:</label>
         <input
-          id="isFavorite"
+          id="has_emmy"
           type="checkbox"
           onChange={handleCheckboxChange}
           checked={movie.has_emmy}
