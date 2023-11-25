@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 const API = import.meta.env.VITE_BASE_URL;
 
@@ -41,6 +41,17 @@ const Update = () => {
         console.error("Error fetching data.", error);
       });
   };
+
+  useEffect(() => {
+    fetch(`${API}/movies/${id}`)
+    .then((res) => res.json())
+    .then((movieData) => {
+        setMovie(movieData)
+    })
+    .catch((error) => {
+        console.error("Error fetching data.", error);
+      });
+  }, [id, navigate])
 
   const handleSubmit = (event) => {
     event.preventDefault();
