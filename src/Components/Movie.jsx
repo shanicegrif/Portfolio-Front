@@ -7,8 +7,8 @@ const Movie = ({ movie, id }) => {
   return (
     <div className="movie-wrapper">
       <aside className="movie-info">
-        <h3> <Link to={`movies/${id}`}>{title}</Link> </h3>
-        <p>Duration: {duration}</p>
+        <h3> <Link to={`/movies/${id}`}>{title}</Link> </h3>
+        <p>Duration: {duration} mins</p>
         <p>Genre: {genre}</p>
         <p>Rating: {rating}</p>
         <p>Emmy: {has_emmy ? (<span>🏆</span>) : (<span>❌</span>)}</p>
