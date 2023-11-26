@@ -60,7 +60,7 @@ const Update = () => {
 
   return (
     <div className="update-movie">
-      <form onSubmit={handleSubmit}>
+      <form className="col-lg-6 offset-lg-3" onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
           id="title"
@@ -118,14 +118,15 @@ const Update = () => {
           checked={movie.has_emmy}
         />
         <br />
-
-        <button type="submit" className="newButton">
-          Update Movie
-        </button>
+        <div className="update-movie-form-button text-center">
+          <button type="submit" className="newButton">
+            Update Movie
+          </button>
+          <button style={{width: "140px"}}>
+            <Link to={`/movies/${id}`}>Cancel</Link>
+          </button>
+        </div>
       </form>
-      <Link to={`/movies/${id}`}>
-        <button>Cancel</button>
-      </Link>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 body {
   position: relative;
   min-height: 100vh;
+  background-color: #473e66;
 }
 
 .app {
@@ -24,16 +25,12 @@ nav {
 
 .container {
   padding-top: 7rem;
-  padding-bottom: 3.5rem;
+  padding-bottom: 4rem;
+  width: 90vw;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
   text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 button {
@@ -50,6 +47,53 @@ button:hover {
   border-color: #646cff;
 }
 
+.movies-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+}
+
+.movie-card {
+  width: 380px;
+  border: 2px solid #bd83b8;
+  border-radius: 3px;
+  padding: 5px 45px;
+}
+
+.show-movie {
+  display: grid;
+  justify-content: center;
+  && .show-movie-card {
+    width: 380px;
+    display: grid;
+    justify-content: center;
+    border: 1px solid #bd83b8;
+    border-radius: 3px;
+    padding: 15px 0px;
+  }
+  && .show-movie-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0px;
+    && button {
+      margin-right: 10px;
+      background-color: #f1916d;
+    }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  color: #f5d7db;
+  && button {
+    background-color: #f1916d;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+}
+
 footer {
   position: absolute;
   bottom: 0;
@@ -59,4 +103,18 @@ footer {
   padding-top: 10px;
   text-align: center;
   color: #f1916d;
+}
+
+@media (max-width: 1270px) {
+  .movies-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 890px) {
+  .movies-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -47,7 +47,7 @@ const New = () => {
 
   return (
     <div className="new-movie">
-      <form onSubmit={handleSubmit}>
+      <form className="col-lg-6 offset-lg-3" onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
           id="title"
@@ -106,13 +106,15 @@ const New = () => {
         />
         <br />
 
-        <button type="submit" className="newButton">
-          Create Movie
-        </button>
+        <div className="new-movie-form-button text-center">
+          <button type="submit" className="newButton">
+            Create Movie
+          </button>
+          <button style={{width: "140px"}}>
+            <Link to={`/movies`}>Cancel</Link>
+          </button>
+        </div>
       </form>
-      <Link to={`/movies`}>
-        <button>Cancel</button>
-      </Link>
     </div>
   );
 };
