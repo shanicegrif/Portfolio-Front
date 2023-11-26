@@ -44,14 +44,14 @@ const Update = () => {
 
   useEffect(() => {
     fetch(`${API}/movies/${id}`)
-    .then((res) => res.json())
-    .then((movieData) => {
-        setMovie(movieData)
-    })
-    .catch((error) => {
+      .then((res) => res.json())
+      .then((movieData) => {
+        setMovie(movieData);
+      })
+      .catch((error) => {
         console.error("Error fetching data.", error);
       });
-  }, [id, navigate])
+  }, [id, navigate]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

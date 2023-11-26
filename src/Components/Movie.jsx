@@ -5,7 +5,7 @@ const Movie = ({ movie, id }) => {
   const { title, genre, duration, rating, has_emmy } =
     movie;
   return (
-    <div className="movie-wrapper">
+    <div className="movie-card">
       <aside className="movie-info">
         <h3> <Link to={`/movies/${id}`}>{title}</Link> </h3>
         <p>Duration: {duration} mins</p>

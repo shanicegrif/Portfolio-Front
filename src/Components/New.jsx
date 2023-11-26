@@ -3,50 +3,50 @@ import { useNavigate, Link } from "react-router-dom";
 const API = import.meta.env.VITE_BASE_URL;
 
 const New = () => {
-    const navigate = useNavigate();
-    const [movie, setMovie] = useState({
-        title: "",
-        director: "",
-        release_date: "",
-        genre: "",
-        duration: "",
-        rating: "",
-        has_emmy: false,
-      });
+  const navigate = useNavigate();
+  const [movie, setMovie] = useState({
+    title: "",
+    director: "",
+    release_date: "",
+    genre: "",
+    duration: "",
+    rating: "",
+    has_emmy: false,
+  });
 
-    const handleTextChange = (event) => {
-        setMovie({...movie, [event.target.id]: event.target.value})
+  const handleTextChange = (event) => {
+    setMovie({ ...movie, [event.target.id]: event.target.value });
+  };
+
+  const handleCheckboxChange = () => {
+    setMovie({ ...movie, has_emmy: !movie.has_emmy });
+  };
+
+  const addMovie = () => {
+    const httpOptions = {
+      method: "POST",
+      body: JSON.stringify(movie),
+      headers: {
+        "Content-type": "application/json",
+      },
     };
+    fetch(`${API}/movies`, httpOptions)
+      .then(() => {
+        alert(`${movie.title} was add to the movie list!`);
+        navigate("/movies");
+      })
+      .catch((error) => {
+        console.error("Error fetching data.", error);
+      });
+  };
 
-    const handleCheckboxChange = () => {
-        setMovie({...movie, has_emmy: !movie.has_emmy})
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addMovie();
+  };
 
-    const addMovie = () => {
-        const httpOptions = {
-            method: "POST", 
-            body: JSON.stringify(movie),
-            headers: {
-                "Content-type": "application/json",
-            }
-        };
-        fetch(`${API}/movies`, httpOptions)
-        .then(() => {
-            alert(`${movie.title} was add to the movie list!`);
-            navigate("/movies");
-        })
-        .catch((error) => {
-            console.error("Error fetching data.", error);
-          });
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        addMovie();
-    }
-
-    return (
-        <div className="new-movie">
+  return (
+    <div className="new-movie">
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
@@ -114,7 +114,7 @@ const New = () => {
         <button>Cancel</button>
       </Link>
     </div>
-    );
-}
+  );
+};
 
 export default New;

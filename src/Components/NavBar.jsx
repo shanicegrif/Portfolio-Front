@@ -4,10 +4,10 @@ const NavBar = () => {
     return (
         <nav className="navbar fixed-top">
             <Link to="/movies">
-                <h1 className="navLink">FlickFleet</h1>
+                <h1 className="navLink-home">FlickFleet</h1>
             </Link>
             <Link to="/movies/new">
-                <button className="navLink">Add New Movie</button>
+                <button className="navLink-new">Add New Movie</button>
             </Link>
         </nav>
     );

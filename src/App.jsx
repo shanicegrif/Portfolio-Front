@@ -6,11 +6,11 @@ import Index from "./Components/Index";
 import New from "./Components/New";
 import Show from "./Components/Show";
 import Update from "./Components/Update";
-const API = import.meta.env.VITE_BASE_URL;
+import Footer from "./Components/Footer";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <Router>
         <NavBar />
         <div className="container">
@@ -22,6 +22,7 @@ function App() {
             <Route path="/movies/:id/edit" element={<Update />} />
           </Routes>
         </div>
+        <Footer/>
       </Router>
     </div>
   );

@@ -18,7 +18,7 @@ const Index = () => {
 
   return (
     <div>
-      <div className="movies-list">
+      <div className="movies-list-container">
         {movies.map((movie) => (
           <Movie key={movie.id} id={movie.id} movie={movie} />
         ))}
