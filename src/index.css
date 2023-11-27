@@ -56,9 +56,24 @@ button:hover {
 .movie-card {
   width: 380px;
   border: 2px solid #bd83b8;
-  border-radius: 3px;
-  padding: 5px 45px;
+  border-radius: 10px;
+  && .movie-card-info {
+    padding-left: 20px;
+    && p {
+      color: #f5d7db;
+    }
+  }
+  && .movie-card-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    && button {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
 }
+
 
 .show-movie {
   display: grid;
@@ -67,9 +82,14 @@ button:hover {
     width: 380px;
     display: grid;
     justify-content: center;
-    border: 1px solid #bd83b8;
-    border-radius: 3px;
-    padding: 15px 0px;
+    border: 2px solid #bd83b8;
+    border-radius: 10px;
+    && .show-movie-card-info {
+      color: #f5d7db;
+      padding: 15px 0px;
+    } && button {
+      margin-bottom: 10px;
+    }
   }
   && .show-movie-buttons {
     display: flex;

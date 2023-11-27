@@ -4,6 +4,7 @@ const API = import.meta.env.VITE_BASE_URL;
 
 const New = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [movie, setMovie] = useState({
     title: "",
     director: "",
@@ -15,8 +16,22 @@ const New = () => {
   });
 
   const handleTextChange = (event) => {
-    setMovie({ ...movie, [event.target.id]: event.target.value });
+    const { id, value } = event.target;
+  
+    if (id === 'duration') {
+      const parsedValue = parseInt(value.match(/\d+/), 10);
+  
+      if (!isNaN(parsedValue)) {
+        setMovie({ ...movie, [id]: parsedValue });
+        setError("");
+      } else {
+        setError("This is not a number, try again!");
+      }
+    } else {
+      setMovie({ ...movie, [id]: value });
+    }
   };
+  
 
   const handleCheckboxChange = () => {
     setMovie({ ...movie, has_emmy: !movie.has_emmy });
@@ -64,15 +79,15 @@ const New = () => {
           value={movie.director}
           onChange={handleTextChange}
           placeholder="Name of Director"
-          required
         />
         <label htmlFor="release_date">Release Date:</label>
         <input
           id="release_date"
           type="text"
           value={movie.release_date}
-          placeholder="YY-MM-DD"
+          placeholder="YYYY-MM-DD"
           onChange={handleTextChange}
+          required
         />
         <label htmlFor="genre">Genre:</label>
         <input
@@ -85,7 +100,8 @@ const New = () => {
         <input
           id="duration"
           type="number"
-          value={movie.time}
+          min="1" max="1000"
+          value={movie.duration}
           onChange={handleTextChange}
           placeholder="Length of Movie in minutes"
         />
@@ -96,6 +112,7 @@ const New = () => {
           value={movie.rating}
           placeholder="0.0 to 10.0"
           onChange={handleTextChange}
+          required
         />
         <label htmlFor="has_emmy">Emmy:</label>
         <input
@@ -110,7 +127,7 @@ const New = () => {
           <button type="submit" className="newButton">
             Create Movie
           </button>
-          <button style={{width: "140px"}}>
+          <button style={{ width: "140px" }}>
             <Link to={`/movies`}>Cancel</Link>
           </button>
         </div>

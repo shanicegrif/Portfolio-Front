@@ -39,15 +39,20 @@ const Show = () => {
   return (
     <div>
       <div className="show-movie">
-        <aside className="show-movie-card">
-          <p>Title: {title}</p>
-          <p>Director: {director}</p>
-          <p>Release Date: {release_date}</p>
-          <p>Duration: {duration} mins</p>
-          <p>Genre: {genre}</p>
-          <p>Rating: {rating}</p>
-          <p>Emmy: {has_emmy ? <span>🏆</span> : <span>❌</span>}</p>
-        </aside>
+        <div className="show-movie-card">
+          <aside className="show-movie-card-info">
+            <p>Title: {title}</p>
+            <p>Director: {director}</p>
+            <p>Release Date: {release_date}</p>
+            <p>Duration: {duration} mins</p>
+            <p>Genre: {genre}</p>
+            <p>Rating: {rating}</p>
+            <p>Emmy: {has_emmy ? <span>🏆</span> : <span>❌</span>}</p>
+          </aside>
+          <div className="show-movie-card-buttons text-center">
+            <button className="btn btn-primary">➕ WatchList</button>
+          </div>
+        </div>
         <div className="show-movie-buttons">
           <div>
             <Link to={`/movies`}>

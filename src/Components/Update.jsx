@@ -84,7 +84,7 @@ const Update = () => {
           id="release_date"
           type="text"
           value={movie.release_date}
-          placeholder="YY-MM-DD"
+          placeholder="YYYY-MM-DD"
           onChange={handleTextChange}
         />
         <label htmlFor="genre">Genre:</label>
