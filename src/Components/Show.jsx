@@ -49,9 +49,9 @@ const Show = () => {
             <p>Rating: {rating}</p>
             <p>Emmy: {has_emmy ? <span>🏆</span> : <span>❌</span>}</p>
           </aside>
-          <div className="show-movie-card-buttons text-center">
+          {/* <div className="show-movie-card-buttons text-center">
             <button className="btn btn-primary">➕ WatchList</button>
-          </div>
+          </div> */}
         </div>
         <div className="show-movie-buttons">
           <div>

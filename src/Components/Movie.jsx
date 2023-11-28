@@ -14,9 +14,9 @@ const Movie = ({ movie, id }) => {
         <p>Rating: {rating}</p>
         <p>Emmy: {has_emmy ? <span>🏆</span> : <span>❌</span>}</p>
       </aside>
-      <div className="movie-card-buttons text-center">
+      {/* <div className="movie-card-buttons text-center">
         <button className="btn btn-primary">➕ WatchList</button>
-      </div>
+      </div> */}
     </article>
   );
 };

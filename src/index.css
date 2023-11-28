@@ -103,6 +103,22 @@ button:hover {
   }
 }
 
+.new-movie button {
+  background-color: #f1916d;
+  margin-top: 10px;
+  && a {
+    color: black;
+  }
+}
+
+.update-movie button {
+  background-color: #f1916d;
+  margin-top: 10px;
+  && a {
+    color: black;
+  }
+}
+
 form {
   display: flex;
   flex-direction: column;

@@ -4,7 +4,7 @@ const API = import.meta.env.VITE_BASE_URL;
 
 const New = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const [movie, setMovie] = useState({
     title: "",
     director: "",
@@ -17,21 +17,20 @@ const New = () => {
 
   const handleTextChange = (event) => {
     const { id, value } = event.target;
-  
-    if (id === 'duration') {
-      const parsedValue = parseInt(value.match(/\d+/), 10);
-  
-      if (!isNaN(parsedValue)) {
-        setMovie({ ...movie, [id]: parsedValue });
-        setError("");
-      } else {
-        setError("This is not a number, try again!");
-      }
-    } else {
-      setMovie({ ...movie, [id]: value });
-    }
+
+    setMovie({ ...movie, [id]: value });
+    // if (id === "duration") {
+    //   const parsedValue = parseInt(value, 10);
+
+    //   if (!isNaN(parsedValue)) {
+    //     setMovie({ ...movie, [id]: parsedValue });
+    //   } else {
+    //     setError("Duration must be a number.");
+    //   }
+    // } else {
+    //   setMovie({ ...movie, [id]: value });
+    // }
   };
-  
 
   const handleCheckboxChange = () => {
     setMovie({ ...movie, has_emmy: !movie.has_emmy });
@@ -57,7 +56,9 @@ const New = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addMovie();
+    if (!error) {
+      addMovie();
+    }
   };
 
   return (
@@ -99,12 +100,13 @@ const New = () => {
         <label htmlFor="duration">Duration:</label>
         <input
           id="duration"
-          type="number"
-          min="1" max="1000"
+          type="text"
           value={movie.duration}
           onChange={handleTextChange}
           placeholder="Length of Movie in minutes"
+          required
         />
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <label htmlFor="rating">Rating:</label>
         <input
           id="rating"
@@ -127,11 +129,13 @@ const New = () => {
           <button type="submit" className="newButton">
             Create Movie
           </button>
-          <button style={{ width: "140px" }}>
-            <Link to={`/movies`}>Cancel</Link>
-          </button>
         </div>
       </form>
+      <div className="new-movie-form-button text-center">
+        <button style={{ width: "140px" }}>
+          <Link to={`/movies`}>Cancel</Link>
+        </button>
+      </div>
     </div>
   );
 };

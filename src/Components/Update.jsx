@@ -17,7 +17,9 @@ const Update = () => {
   });
 
   const handleTextChange = (event) => {
-    setMovie({ ...movie, [event.target.id]: event.target.value });
+    const { id, value } = event.target;
+
+    setMovie({ ...movie, [id]: value });
   };
 
   const handleCheckboxChange = () => {
@@ -77,7 +79,6 @@ const Update = () => {
           value={movie.director}
           onChange={handleTextChange}
           placeholder="Name of Director"
-          required
         />
         <label htmlFor="release_date">Release Date:</label>
         <input
@@ -86,6 +87,7 @@ const Update = () => {
           value={movie.release_date}
           placeholder="YYYY-MM-DD"
           onChange={handleTextChange}
+          required
         />
         <label htmlFor="genre">Genre:</label>
         <input
@@ -97,10 +99,11 @@ const Update = () => {
         <label htmlFor="duration">Duration:</label>
         <input
           id="duration"
-          type="number"
-          value={movie.time}
+          type="text"
+          value={movie.duration}
           onChange={handleTextChange}
           placeholder="Length of Movie in minutes"
+          required
         />
         <label htmlFor="rating">Rating:</label>
         <input
@@ -109,6 +112,7 @@ const Update = () => {
           value={movie.rating}
           placeholder="0.0 to 10.0"
           onChange={handleTextChange}
+          required
         />
         <label htmlFor="has_emmy">Emmy:</label>
         <input
@@ -122,11 +126,14 @@ const Update = () => {
           <button type="submit" className="newButton">
             Update Movie
           </button>
-          <button style={{width: "140px"}}>
-            <Link to={`/movies/${id}`}>Cancel</Link>
-          </button>
         </div>
       </form>
+
+      <div className="update-movie-form-button text-center">
+        <button style={{ width: "140px" }}>
+          <Link to={`/movies/${id}`}>Cancel</Link>
+        </button>
+      </div>
     </div>
   );
 };
