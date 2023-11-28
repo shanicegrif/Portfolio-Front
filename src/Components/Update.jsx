@@ -21,7 +21,6 @@ const Update = () => {
   const handleTextChange = (event) => {
     const { id, value } = event.target;
 
-    setMovie({ ...movie, [id]: value });
     if (id === "duration") {
       const parsedValue = parseInt(value, 10);
 
@@ -38,9 +37,15 @@ const Update = () => {
   };
 
   const updateMovie = () => {
+    const movieWithDefaults = {
+      ...movie,
+      director: movie.director.trim() === "" ? "Unknown" : movie.director,
+      genre: movie.genre.trim() === "" ? "Unknown" : movie.genre,
+    };
+    
     const httpOptions = {
       method: "PUT",
-      body: JSON.stringify(movie),
+      body: JSON.stringify(movieWithDefaults),
       headers: {
         "Content-type": "application/json",
       },
