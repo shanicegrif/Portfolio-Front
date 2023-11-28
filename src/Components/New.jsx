@@ -57,32 +57,34 @@ const New = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { duration, release_date, rating } = movie;
-    
+
     const parsedValue = parseInt(duration, 10);
     if (isNaN(parsedValue)) {
       setError("Duration must be a number.");
       return;
     }
+    setError(null);
 
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(release_date)) {
       setErrorTwo("Invalid date format. Please use YYYY-MM-DD.");
       return;
     }
+    setErrorTwo(null);
 
     const formattedRating = parseFloat(rating);
     if (
-      !isNaN(formattedRating) &&
-      formattedRating >= 0.0 &&
-      formattedRating <= 10.0
+      isNaN(formattedRating) ||
+      formattedRating < 0.0 ||
+      formattedRating > 10.0
     ) {
-      setErrorThree("Invalid rating. Please enter a rating between 0.0 and 10.0");
+      setErrorThree(
+        "Invalid rating. Please enter a rating between 0.0 and 10.0"
+      );
+      return;
     }
-
-    setMovie({ ...movie, duration: parsedValue });
-    setError(null);
-    setErrorTwo(null);
     setErrorThree(null);
+
     addMovie();
   };
 
@@ -115,7 +117,7 @@ const New = () => {
           onChange={handleTextChange}
           required
         />
-        {errorTwo && <p style={{ color: "red" }}>{error}</p>}
+        {errorTwo && <p style={{ color: "red" }}>{errorTwo}</p>}
         <label htmlFor="genre">Genre:</label>
         <input
           id="genre"
@@ -142,7 +144,7 @@ const New = () => {
           onChange={handleTextChange}
           required
         />
-        {errorThree && <p style={{ color: "red" }}>{error}</p>}
+        {errorThree && <p style={{ color: "red" }}>{errorThree}</p>}
         <label htmlFor="has_emmy">Emmy:</label>
         <input
           id="has_emmy"

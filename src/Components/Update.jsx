@@ -5,7 +5,9 @@ const API = import.meta.env.VITE_BASE_URL;
 const Update = () => {
   let { id } = useParams();
   const navigate = useNavigate();
-
+  const [error, setError] = useState(null);
+  const [errorTwo, setErrorTwo] = useState(null);
+  const [errorThree, setErrorThree] = useState(null);
   const [movie, setMovie] = useState({
     title: "",
     director: "",
@@ -20,6 +22,15 @@ const Update = () => {
     const { id, value } = event.target;
 
     setMovie({ ...movie, [id]: value });
+    if (id === "duration") {
+      const parsedValue = parseInt(value, 10);
+
+      if (!isNaN(parsedValue)) {
+        setMovie({ ...movie, [id]: parsedValue });
+      }
+    } else {
+      setMovie({ ...movie, [id]: value });
+    }
   };
 
   const handleCheckboxChange = () => {
@@ -57,6 +68,35 @@ const Update = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const { duration, release_date, rating } = movie;
+
+    const parsedValue = parseInt(duration, 10);
+    if (isNaN(parsedValue)) {
+      setError("Duration must be a number.");
+      return;
+    }
+    setError(null);
+
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(release_date)) {
+      setErrorTwo("Invalid date format. Please use YYYY-MM-DD.");
+      return;
+    }
+    setErrorTwo(null);
+
+    const formattedRating = parseFloat(rating);
+    if (
+      isNaN(formattedRating) ||
+      formattedRating < 0.0 ||
+      formattedRating > 10.0
+    ) {
+      setErrorThree(
+        "Invalid rating. Please enter a rating between 0.0 and 10.0"
+      );
+      return;
+    }
+    setErrorThree(null);
+
     updateMovie();
   };
 
@@ -89,6 +129,7 @@ const Update = () => {
           onChange={handleTextChange}
           required
         />
+        {errorTwo && <p style={{ color: "red" }}>{errorTwo}</p>}
         <label htmlFor="genre">Genre:</label>
         <input
           id="genre"
@@ -105,6 +146,7 @@ const Update = () => {
           placeholder="Length of Movie in minutes"
           required
         />
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <label htmlFor="rating">Rating:</label>
         <input
           id="rating"
@@ -114,6 +156,7 @@ const Update = () => {
           onChange={handleTextChange}
           required
         />
+        {errorThree && <p style={{ color: "red" }}>{errorThree}</p>}
         <label htmlFor="has_emmy">Emmy:</label>
         <input
           id="has_emmy"
