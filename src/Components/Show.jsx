@@ -41,7 +41,7 @@ const Show = () => {
       <div className="show-movie">
         <div className="show-movie-card">
           <aside className="show-movie-card-info">
-            <p>Title: {title}</p>
+            <h4>{title}</h4>
             <p>Director: {director}</p>
             <p>Release Date: {release_date}</p>
             <p>Duration: {duration} mins</p>

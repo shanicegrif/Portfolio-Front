@@ -16,10 +16,8 @@ nav {
     font-size: 3.2em;
     color: #f1916d;
     padding-left: 20px;
-  }
-  && button {
-    background-color: #f1916d;
-    margin-right: 20px;
+  } && .nav-link {
+    padding-left: 25px;
   }
 }
 
@@ -43,8 +41,18 @@ button {
   transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+.order-selection {
+  text-align: center;
+  padding-bottom: 20px;
+  && label {
+    font-size: 25px;
+    color:#06142e;
+    padding-right: 5px;
+  }
+  && select {
+    background-color: #06142e;
+    color: white;
+  }
 }
 
 .movies-list {

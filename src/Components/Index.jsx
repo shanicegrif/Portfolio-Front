@@ -4,7 +4,7 @@ const API = import.meta.env.VITE_BASE_URL;
 
 const Index = () => {
   const [movies, setMovies] = useState([]);
-  const [order, setOrder] = useState(null);
+  const [order, setOrder] = useState("");
 
   useEffect(() => {
     fetch(`${API}/movies`)
