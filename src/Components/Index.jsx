@@ -26,6 +26,10 @@ const Index = () => {
       return movies.sort((a,b) => b.duration - a.duration);
     } else if (newOrder === "MinLowHigh") {
       return movies.sort((a,b) => a.duration - b.duration);
+    } else if (newOrder === "RateHighLow") {
+      return movies.sort((a,b) => b.rating - a.rating);
+    } else if (newOrder === "RateLowHigh") {
+      return movies.sort((a,b) => a.rating - b.rating);
     } else {
       return movies;
     }
@@ -39,8 +43,10 @@ const Index = () => {
         <label>Order by</label>
         <select value={order} onChange={(e) => handleOrderChange(e.target.value)}>
           <option value="">--Select Order--</option>
-          <option value="MinHighLow">High to Low</option>
-          <option value="MinLowHigh">Low to High</option>
+          <option value="MinHighLow">Duration: High to Low</option>
+          <option value="MinLowHigh">Duration: Low to High</option>
+          <option value="RateHighLow">Rating: High to Low</option>
+          <option value="RateLowHigh">Rating: Low to High</option>
         </select>
       </div>
       <div className="movies-list">
