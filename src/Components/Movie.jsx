@@ -5,7 +5,7 @@ const Movie = ({ movie, id, addToWatchlist }) => {
   const { title, genre, duration, rating, has_emmy } = movie;
 
   const handleAddToWatchlist = () => {
-    addToWatchlist(movie); // Pass the entire movie object
+    addToWatchlist(movie);
   };
   return (
     <article className="movie-card">
