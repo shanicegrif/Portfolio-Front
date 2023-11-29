@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Movie = ({ movie, id }) => {
+const Movie = ({ movie, id, addToWatchlist }) => {
   const { title, genre, duration, rating, has_emmy } = movie;
+
+  const handleAddToWatchlist = () => {
+    addToWatchlist(movie); // Pass the entire movie object
+  };
   return (
     <article className="movie-card">
       <aside className="movie-card-info">
@@ -14,9 +18,9 @@ const Movie = ({ movie, id }) => {
         <p>Rating: {rating}</p>
         <p>Emmy: {has_emmy ? <span>🏆</span> : <span>❌</span>}</p>
       </aside>
-      {/* <div className="movie-card-buttons text-center">
-        <button className="btn btn-primary">➕ WatchList</button>
-      </div> */}
+      <div className="movie-card-buttons text-center">
+        <button className="btn btn-primary" onClick={handleAddToWatchlist}>➕ WatchList</button>
+      </div>
     </article>
   );
 };
