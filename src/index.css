@@ -66,6 +66,33 @@ button {
   }
 }
 
+.watchlist {
+  color: #dda1a8;
+  && button {
+    background-color: #f1916d;
+  }
+  && .watchlist-info {
+    border: 2px solid #06142e;
+    width: 350px;
+    border-radius: 10px;
+    margin-top: 5px;
+    && h4 {
+      text-align: center;
+    }
+    && ul {
+      list-style-type: none;
+      font-style: italic;
+      && li {
+        padding-bottom: 5px;
+      }
+      && button {
+        padding: 5px;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
 .movies-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -75,7 +102,7 @@ button {
 
 .movie-card {
   width: 380px;
-  background-color: #efc2c7;
+  background-color: #dda1a8;
   border-radius: 10px;
   box-shadow: 5px 5px 5px black;
   && .movie-card-info {
@@ -101,11 +128,14 @@ button {
 .show-movie {
   display: grid;
   justify-content: center;
+  && .show-watchlist {
+    margin-bottom: 10px;
+  }
   && .show-movie-card {
     width: 380px;
     display: grid;
     justify-content: center;
-    background-color: #efc2c7;
+    background-color: #dda1a8;
     border-radius: 10px;
     box-shadow: 5px 5px 5px black;
     && .show-movie-card-info {
@@ -147,7 +177,7 @@ button {
 form {
   display: flex;
   flex-direction: column;
-  color: #f5d7db;
+  color: #dda1a8;
   && button {
     background-color: #f1916d;
     margin-right: 30px;

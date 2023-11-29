@@ -7,10 +7,14 @@ const Index = () => {
   const [movies, setMovies] = useState([]);
   const [order, setOrder] = useState("");
   const [watchlistOpen, setWatchlistOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { watchlist, addToWatchlist, removeFromWatchlist } = useWatchlist();
 
   const toggleWatchlist = () => {
     setWatchlistOpen(!watchlistOpen);
+    if (watchlistOpen) {
+      setErrorMessage("");
+    }
   };
 
   useEffect(() => {
@@ -44,6 +48,19 @@ const Index = () => {
 
   const sortedMovies = orderedMovies(movies, order);
 
+  const isInWatchlist = (movieId) => {
+    return watchlist.some((movie) => movie.id === movieId);
+  };
+
+  const handleAddToWatchlist = (movie) => {
+    if (isInWatchlist(movie.id)) {
+      setErrorMessage("This movie is already in your watchlist!");
+    } else {
+      addToWatchlist(movie);
+      setErrorMessage("");
+    }
+  };
+
   return (
     <div className="movie-list-section">
       <div className="order-selection">
@@ -65,7 +82,7 @@ const Index = () => {
             {watchlistOpen ? "Close Watchlist" : "Open Watchlist"}
           </button>
           {watchlistOpen && watchlist.length > 0 && (
-            <>
+            <div className="watchlist-info">
               <h4>Watchlist</h4>
               <ul>
                 {watchlist.map((movie) => (
@@ -77,23 +94,29 @@ const Index = () => {
                   </li>
                 ))}
               </ul>
-            </>
+            </div>
           )}
           {watchlistOpen && watchlist.length === 0 && (
             <p>Your watchlist is empty.</p>
           )}
+          {errorMessage && (
+            <div style={{ color: "red", marginTop: "10px" }}>
+              {errorMessage}
+            </div>
+          )}
         </div>
       </div>
-        <div className="movies-list">
-          {sortedMovies.map((movie) => (
-            <Movie
-              key={movie.id}
-              id={movie.id}
-              movie={movie}
-              addToWatchlist={addToWatchlist}
-            />
-          ))}
-        </div>
+      <div className="movies-list">
+        {sortedMovies.map((movie) => (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            movie={movie}
+            addToWatchlist={handleAddToWatchlist}
+            disabled={isInWatchlist(movie.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
