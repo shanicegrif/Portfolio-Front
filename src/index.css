@@ -46,12 +46,13 @@ button {
   padding-bottom: 20px;
   && label {
     font-size: 25px;
-    color:#06142e;
+    color:#f5d7db;
     padding-right: 5px;
   }
   && select {
-    background-color: #06142e;
-    color: white;
+    background-color: #f5d7db;
+    color: #06142e;
+    font-size: 18px;
   }
 }
 
@@ -59,16 +60,20 @@ button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
+  padding-top: 10px;
 }
 
 .movie-card {
   width: 380px;
-  border: 2px solid #bd83b8;
+  background-color: #f5d7db;
   border-radius: 10px;
   && .movie-card-info {
     padding-left: 20px;
+    && h3 a{
+      color: #06142e;
+    }
     && p {
-      color: #f5d7db;
+      color: #06142e;
     }
   }
   && .movie-card-buttons {

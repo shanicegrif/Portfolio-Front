@@ -25,7 +25,7 @@ const NavBar = () => {
       >
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link to="/movies" className="nav-link" style={{ color: "#f1916d" }}>
+            <Link to="/" className="nav-link" style={{ color: "#f1916d" }}>
               Home
             </Link>
           </li>
