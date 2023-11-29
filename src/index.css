@@ -16,7 +16,8 @@ nav {
     font-size: 3.2em;
     color: #f1916d;
     padding-left: 20px;
-  } && .nav-link {
+  }
+  && .nav-link {
     padding-left: 25px;
   }
 }
@@ -55,11 +56,11 @@ button {
   padding-bottom: 20px;
   && label {
     font-size: 25px;
-    color:#f5d7db;
+    color: #efc2c7;
     padding-right: 5px;
   }
   && select {
-    background-color: #f5d7db;
+    background-color: efc2c7;
     color: #06142e;
     font-size: 18px;
   }
@@ -74,11 +75,12 @@ button {
 
 .movie-card {
   width: 380px;
-  background-color: #f5d7db;
+  background-color: #efc2c7;
   border-radius: 10px;
+  box-shadow: 5px 5px 5px black;
   && .movie-card-info {
     padding-left: 20px;
-    && h3 a{
+    && h3 a {
       color: #06142e;
     }
     && p {
@@ -103,12 +105,14 @@ button {
     width: 380px;
     display: grid;
     justify-content: center;
-    border: 2px solid #bd83b8;
+    background-color: #efc2c7;
     border-radius: 10px;
+    box-shadow: 5px 5px 5px black;
     && .show-movie-card-info {
-      color: #f5d7db;
+      color: #06142e;
       padding: 15px 0px;
-    } && button {
+    }
+    && button {
       margin-bottom: 10px;
     }
   }
