@@ -9,8 +9,8 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top">
-        <Link to="/movies">
+    <nav className="navbar navbar-expand-md fixed-top">
+        <Link to="/">
         <h1 className="navLink-home">FlickFleet</h1>
       </Link>
 
@@ -25,8 +25,8 @@ const NavBar = () => {
       >
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link to="/" className="nav-link" style={{ color: "#f1916d" }}>
-              Home
+            <Link to="/movies" className="nav-link" style={{ color: "#f1916d" }}>
+              Movies
             </Link>
           </li>
           <li className="nav-item">

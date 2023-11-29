@@ -27,6 +27,15 @@ nav {
   width: 90vw;
 }
 
+.home-header-img {
+  padding-bottom: 20px;
+}
+
+.home-text {
+  color: #f1916d;
+  text-align: center;
+}
+
 a {
   text-decoration: inherit;
 }
