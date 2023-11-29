@@ -1,21 +1,13 @@
 import { useEffect, useState } from "react";
+import { useWatchlist } from "./WatchlistContext";
 import Movie from "./Movie";
 const API = import.meta.env.VITE_BASE_URL;
 
 const Index = () => {
   const [movies, setMovies] = useState([]);
   const [order, setOrder] = useState("");
-  const [watchlist, setWatchlist] = useState([]);
   const [watchlistOpen, setWatchlistOpen] = useState(false);
-
-  const addToWatchlist = (movie) => {
-    setWatchlist([...watchlist, movie]);
-  };
-
-  const removeFromWatchlist = (movieId) => {
-    const updatedWatchlist = watchlist.filter((movie) => movie.id !== movieId);
-    setWatchlist(updatedWatchlist);
-  };
+  const { watchlist, addToWatchlist, removeFromWatchlist } = useWatchlist();
 
   const toggleWatchlist = () => {
     setWatchlistOpen(!watchlistOpen);
@@ -67,39 +59,41 @@ const Index = () => {
           <option value="RateLowHigh">Rating: Low to High</option>
         </select>
       </div>
-      <div className={`watchlist ${watchlistOpen ? "open" : "closed"}`}>
-        <button className="toggle-btn" onClick={toggleWatchlist}>
-          {watchlistOpen ? "Close Watchlist" : "Open Watchlist"}
-        </button>
-        {watchlistOpen && watchlist.length > 0 && (
-          <>
-            <h2>Watchlist</h2>
-            <ul>
-              {watchlist.map((movie) => (
-                <li key={movie.id}>
-                  {movie.title}
-                  <button onClick={() => removeFromWatchlist(movie.id)}>
-                    Remove
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-        {watchlistOpen && watchlist.length === 0 && (
-          <p>Your watchlist is empty.</p>
-        )}
+      <div className="movie-list-watchlist">
+        <div className={`watchlist ${watchlistOpen ? "open" : "closed"}`}>
+          <button className="toggle-btn" onClick={toggleWatchlist}>
+            {watchlistOpen ? "Close Watchlist" : "Open Watchlist"}
+          </button>
+          {watchlistOpen && watchlist.length > 0 && (
+            <>
+              <h4>Watchlist</h4>
+              <ul>
+                {watchlist.map((movie) => (
+                  <li key={movie.id}>
+                    {movie.title}
+                    <button onClick={() => removeFromWatchlist(movie.id)}>
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          {watchlistOpen && watchlist.length === 0 && (
+            <p>Your watchlist is empty.</p>
+          )}
+        </div>
       </div>
-      <div className="movies-list">
-        {sortedMovies.map((movie) => (
-          <Movie
-            key={movie.id}
-            id={movie.id}
-            movie={movie}
-            addToWatchlist={addToWatchlist}
-          />
-        ))}
-      </div>
+        <div className="movies-list">
+          {sortedMovies.map((movie) => (
+            <Movie
+              key={movie.id}
+              id={movie.id}
+              movie={movie}
+              addToWatchlist={addToWatchlist}
+            />
+          ))}
+        </div>
     </div>
   );
 };
