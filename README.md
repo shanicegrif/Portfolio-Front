@@ -1,9 +1,17 @@
-# React + Vite
+# FlickFleet(Portfolio-Front) - Movie Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to FlickFleet, a movie management app that allows users to explore, create, update, and delete movies from a vast collection. Keep track of your favorite movies and create a personalized watchlist.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# Portfolio-Front
+- **View Movies:** Explore a comprehensive list of movies, including details such as title, director, release date, genre, duration, rating, and Emmy awards.
+- **Create Movies:** Add new movies to the collection with relevant details.
+- **Update Movies:** Modify existing movie information, ensuring the database is up-to-date.
+- **Delete Movies:** Remove unwanted movies from the database.
+- **Watchlist:** Create a personalized watchlist to keep track of movies you want to watch.
+
+
+### Links
+- [Deployed Movie App]()
+- [Deployed Movie Server]()
+- ![WireFrame](/src/assets/images/Movie-App-Wireframe.png)
