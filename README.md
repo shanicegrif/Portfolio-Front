@@ -14,6 +14,6 @@ Welcome to FlickFleet, a movie management app that allows users to explore, crea
 ### Links
 - [Deployed Movie App](https://elaborate-heliotrope-5433b4.netlify.app/)
 - [Deployed Movie Server](https://port-movie-server.onrender.com)
-- [Deployed Movie Server Repo](https://github.com/shanicegrif/Portfolio-Back)
+- [Movie Server (back-end) Repo](https://github.com/shanicegrif/Portfolio-Back)
 - ![WireFrame](/src/assets/images/Movie-App-Wireframe.png)
 - ![WireFrame](/src/assets/images/Movie-App-Wireframe-2.png)
