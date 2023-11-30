@@ -93,6 +93,16 @@ button {
   }
 }
 
+.movie-list-section-message {
+  order: 5px solid;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  && p {
+    text-align: center;
+  }
+}
+
 .movies-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

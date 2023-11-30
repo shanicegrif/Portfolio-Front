@@ -8,6 +8,8 @@ const Index = () => {
   const [order, setOrder] = useState("");
   const [watchlistOpen, setWatchlistOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { watchlist, addToWatchlist, removeFromWatchlist } = useWatchlist();
 
   const toggleWatchlist = () => {
@@ -22,9 +24,11 @@ const Index = () => {
       .then((res) => res.json())
       .then((moviesData) => {
         setMovies(moviesData);
+        setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching data.", error);
+        setError(error);
+        setLoading(false);
       });
   }, [watchlist]);
 
@@ -106,16 +110,26 @@ const Index = () => {
           )}
         </div>
       </div>
+      <div className="movie-list-section-message">
+        {loading && <p className="alert alert-danger">Loading...</p>}
+        {error && (
+          <p className="alert alert-danger">Error fetching data: {error.message}</p>
+        )}
+      </div>
       <div className="movies-list">
-        {sortedMovies.map((movie) => (
-          <Movie
-            key={movie.id}
-            id={movie.id}
-            movie={movie}
-            addToWatchlist={handleAddToWatchlist}
-            disabled={isInWatchlist(movie.id)}
-          />
-        ))}
+        {!loading && !error && (
+          <>
+            {sortedMovies.map((movie) => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                movie={movie}
+                addToWatchlist={handleAddToWatchlist}
+                disabled={isInWatchlist(movie.id)}
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
