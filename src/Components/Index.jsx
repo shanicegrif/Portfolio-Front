@@ -124,8 +124,7 @@ const Index = () => {
                 key={movie.id}
                 id={movie.id}
                 movie={movie}
-                addToWatchlist={handleAddToWatchlist}
-                disabled={isInWatchlist(movie.id)}
+                addToWatchlist={handleAddToWatchlist}                
               />
             ))}
           </>
