@@ -152,9 +152,6 @@ button {
       color: #06142e;
       padding: 15px 0px;
     }
-    && button {
-      margin-bottom: 10px;
-    }
   }
   && .show-movie-buttons {
     display: flex;
