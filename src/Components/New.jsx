@@ -4,7 +4,6 @@ const API = import.meta.env.VITE_BASE_URL;
 
 const New = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
   const [errorTwo, setErrorTwo] = useState(null);
   const [errorThree, setErrorThree] = useState(null);
   const [movie, setMovie] = useState({
@@ -21,9 +20,9 @@ const New = () => {
     const { id, value } = event.target;
 
     if (id === "duration") {
-      const parsedValue = parseInt(value, 10);
+      const parsedValue = value.trim() !== "" ? parseInt(value, 10) : "";
 
-      if (!isNaN(parsedValue)) {
+      if (!isNaN(parsedValue) || value.trim() === "") {
         setMovie({ ...movie, [id]: parsedValue });
       }
     } else {
@@ -41,7 +40,6 @@ const New = () => {
       director: movie.director.trim() === "" ? "Unknown" : movie.director,
       genre: movie.genre.trim() === "" ? "Unknown" : movie.genre,
     };
-    
     const httpOptions = {
       method: "POST",
       body: JSON.stringify(movieWithDefaults),
@@ -61,14 +59,7 @@ const New = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { duration, release_date, rating } = movie;
-
-    const parsedValue = parseInt(duration, 10);
-    if (isNaN(parsedValue)) {
-      setError("Duration must be a number.");
-      return;
-    }
-    setError(null);
+    const { release_date, rating } = movie;
 
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(release_date)) {
@@ -139,7 +130,6 @@ const New = () => {
           placeholder="Length of Movie in minutes"
           required
         />
-        {error && <p style={{ color: "red" }}>{error}</p>}
         <label htmlFor="rating">Rating:</label>
         <input
           id="rating"

@@ -5,7 +5,6 @@ const API = import.meta.env.VITE_BASE_URL;
 const Update = () => {
   let { id } = useParams();
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
   const [errorTwo, setErrorTwo] = useState(null);
   const [errorThree, setErrorThree] = useState(null);
   const [movie, setMovie] = useState({
@@ -22,9 +21,9 @@ const Update = () => {
     const { id, value } = event.target;
 
     if (id === "duration") {
-      const parsedValue = parseInt(value, 10);
+      const parsedValue = value.trim() !== "" ? parseInt(value, 10) : "";
 
-      if (!isNaN(parsedValue)) {
+      if (!isNaN(parsedValue) || value.trim() === "") {
         setMovie({ ...movie, [id]: parsedValue });
       }
     } else {
@@ -73,14 +72,7 @@ const Update = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { duration, release_date, rating } = movie;
-
-    const parsedValue = parseInt(duration, 10);
-    if (isNaN(parsedValue)) {
-      setError("Duration must be a number.");
-      return;
-    }
-    setError(null);
+    const { release_date, rating } = movie;
 
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(release_date)) {
@@ -151,7 +143,6 @@ const Update = () => {
           placeholder="Length of Movie in minutes"
           required
         />
-        {error && <p style={{ color: "red" }}>{error}</p>}
         <label htmlFor="rating">Rating:</label>
         <input
           id="rating"
